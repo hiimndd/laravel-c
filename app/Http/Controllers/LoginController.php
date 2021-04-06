@@ -19,11 +19,11 @@ class LoginController extends Controller
     //    echo $request->password;
         if(Auth::guard('backend')->attempt(['username' => $request->username, 'password' => $request->password], true)){
             
-            //view('pages.home',['user' => Auth::user()]);
+           
             $name = Auth::guard('backend')->user()->username;
-            view('pages.home',['username' => $name]);
             return redirect()->route('home.index')->with('notification','Wellcome');
-        }else {
+        }
+        else {
             return redirect()->route('login')->with('notification','Sai tên đăng nhập hoặt mật khẩu!');
         }
     }
@@ -35,9 +35,10 @@ class LoginController extends Controller
         $this->validate($request,
         [
             'username' => "unique:user_models,username",
+            'password_confirmation' => 'required_with:password|same:password'
         ],[
             'username.unique' => 'Tên Đăng nhập đã tồn tại',
-            'password.confimed' => 'Nhập sai khi xác nhận mật khẩu',
+            'password_confirmation.same' => 'Nhập sai khi xác nhận mật khẩu',
         ]);
         $data = new UserModel();
         $data->username = $request->username;
@@ -52,5 +53,9 @@ class LoginController extends Controller
         $data->save();
         return redirect()->route('login')->with('notification','Đăng ký thành công, giờ bạn có thể đăng nhập');
     }
-    
+    public function loguot(){
+        // Auth::guard('backend')->loguot();
+        Auth::guard('backend')->logout();
+        return redirect()->route('login');
+    }
 }

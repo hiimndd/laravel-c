@@ -14,8 +14,8 @@
 
 <div class="container">
         
-  <h2>Danh sách lớp @foreach($class as $row)
-          {{$row->classname}}
+  <h2>Danh sách lớp đã đăng ký của sinh viên @foreach($sv as $row)
+          {{$row->hoten}}
         @endforeach </h2>
   
   
@@ -27,9 +27,8 @@
   <table class="table table-striped">
   <thead>
       <tr>
-      <th>Họ tên</th>
-        <th>Mã số sinh viên</th>
-        <th>Ngày sinh</th>
+      <th>ID lớp</th>
+        <th>Tên lớp</th>
         <th><th>
         <th><th>
       </tr>
@@ -38,23 +37,14 @@
         
 
 
-        @foreach($class as $row)
-        {{ $malop = $row->id }}
-            @foreach($row->Student as $row)
+        @foreach($sv as $row)
+        
+            @foreach($row->Classmodel as $row)
         <tr>
-        <td>{{ $row->hoten }}</td>
-        <td>{{ $row->mssv }}</td>
-        <td>{{ $row->ngaysinh }}</td>
+        <td>{{ $row->id }}</td>
+        <td>{{ $row->classname }}</td>
         
-        <td>
         
-        <form action="{{ route('cancel', [$row['id'],$malop]) }}" method="GET">
-          <a href = "{{ route('classhome.edit', $row['id']) }}"><button type="button" class="btn btn-primary">sửa</button><a> </a>
-          @csrf
-          <a onclick="return confirm('Bạn có chắc muốn xóa thông tin này')">
-          <button type="submit" class="btn btn-primary">xóa</button></a>
-        </form>
-        </td>
         </tr>
         
             @endforeach

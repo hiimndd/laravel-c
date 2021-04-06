@@ -116,6 +116,7 @@ class ClassController extends Controller
      */
     public function destroy($id)
     {
+        
         $sv = Classmodel::find($id);
         $sv->delete();
         return redirect()->route('class.index')->with('notification','Xóa thành công!');

@@ -83,18 +83,29 @@ use App\Models\Classmodel;
 // Route::get('cratetable', function () {
 //     schema::create('informat');
 // });
-Route::Resource('/home', StudentController::class);
-Route::Resource('/classhome', Class_StudentController::class);
-Route::Resource('/class', ClassController::class);
+
+
+ Route::group(['prefix'=>'Mygroup'],function(){
+    
+ });
+
+
+Route::Resource('/home', StudentController::class)->middleware('Checkloguot');
+Route::Resource('/classhome', Class_StudentController::class)->middleware('Checkloguot');
+Route::Resource('/class', ClassController::class)->middleware('Checkloguot');
+Route::get('/cancel/{id}/{classid}', [classhome::class,'cancelregister'])->name('cancel')->middleware('Checkloguot');
 // Route::get('/', function () {
 //     return view('pages.login');
 // })->name('login');
 
-Route::get('/', [LoginController::class,'login'])->name('login');
+Route::get('/', [LoginController::class,'login'])->name('login')->middleware('Checkuser');
 
-Route::get('/cancel/{id}/{classid}', [classhome::class,'cancelregister'])->name('cancel');
+
+
+
 Route::get('/register', [LoginController::class,'register'])->name('register');
 Route::post('/postregister', [LoginController::class,'postregister'])->name('postregister');
+Route::get('/loguot', [LoginController::class,'loguot'])->name('loguot');
 Route::post('/postlogin', [LoginController::class,'postlogin'])->name('postlogin');
 
 

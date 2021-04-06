@@ -45,6 +45,7 @@
         <td>
         
         <form action="{{route('home.destroy',$row['id'])}}" method="post">
+        <a href = "{{ route('home.show', $row['id']) }}"><button type="button" class="btn btn-primary">chi tiết</button><a>
           <a href = "{{ route('home.edit', $row['id']) }}"><button type="button" class="btn btn-primary">sửa</button><a> </a>
           @csrf
           @method('DELETE')

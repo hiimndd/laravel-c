@@ -50,20 +50,24 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
+      
       <a class="navbar-brand" href="#">Logo</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{route('home.index')}}">Home</a></li>
         
-        <li><a href="{{route('class.index')}}">Quản lý lớp</a></li>
+        <li><a href="{{route('class.index')}}">Quản lý sinh viên</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a><th>
-        
+          @if(Auth::guard('backend')->check())
+            {{Auth::guard('backend')->user()->username}}
+          @endif
         </th></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+        <li><a href="{{route('loguot')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
   </div>
@@ -88,17 +92,7 @@
 <!-- <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer> -->
-<script>
 
-$(document).click(function(event) {
-  if(
-    $('.toggle > input').is(':checked') &&
-    !$(event.target).parents('.toggle').is('.toggle')
-  ) {
-    $('.toggle > input').prop('checked', false);
-  }
-})
-</script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

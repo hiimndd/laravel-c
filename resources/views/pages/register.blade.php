@@ -24,7 +24,7 @@
                             <input type="password" name ="password" class="form-control" placeholder="Mật khẩu" required="">
                         </div>
                         <div class="form-group">
-                            <input type="text" name ="password_confirmation" class="form-control" placeholder="Nhập lại mật khẩu" required="">
+                            <input type="password" name ="password_confirmation" class="form-control" placeholder="Nhập lại mật khẩu" required="">
                         </div>
                         </div>
                         <button type="submit" class="form-button button-l margin-b">Sign up</button>

@@ -60,10 +60,12 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a><th>
-        
+      <li><a><th>
+          @if(Auth::guard('backend')->check())
+            {{Auth::guard('backend')->user()->username}}
+          @endif
         </th></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="{{route('loguot')}}"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
       </ul>
     </div>
   </div>

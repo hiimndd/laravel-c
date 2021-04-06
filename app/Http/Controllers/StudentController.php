@@ -66,7 +66,9 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $sv = Student::All()->where('id', '=', $id);
+        
+        return view('pages.show',['sv'=>$sv]);
     }
 
     /**
