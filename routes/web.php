@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Class_StudentController;
+use App\Http\Controllers\classhome;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ClassController;
 use App\Models\student;
 use App\Models\Classmodel;
 
@@ -81,13 +84,15 @@ use App\Models\Classmodel;
 //     schema::create('informat');
 // });
 Route::Resource('/home', StudentController::class);
+Route::Resource('/classhome', Class_StudentController::class);
+Route::Resource('/class', ClassController::class);
 // Route::get('/', function () {
 //     return view('pages.login');
 // })->name('login');
 
 Route::get('/', [LoginController::class,'login'])->name('login');
 
-
+Route::get('/cancel/{id}/{classid}', [classhome::class,'cancelregister'])->name('cancel');
 Route::get('/register', [LoginController::class,'register'])->name('register');
 Route::post('/postregister', [LoginController::class,'postregister'])->name('postregister');
 Route::post('/postlogin', [LoginController::class,'postlogin'])->name('postlogin');
@@ -111,6 +116,6 @@ Route::get('/them', function () {
     }
 });
 
-Route::get('/lass', function () {
-    return view('pages.addclass');
-})->name('mgclass');
+// Route::get('/lass', function () {
+//     return view('pages.addclass');
+// })->name('mgclass');

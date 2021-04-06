@@ -72,13 +72,14 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="{{route('home.create')}}">Thêm</a></p>
-      
+      <p><a href="{{route('class.create')}}">Thêm lớp</a></p>
+      <p><a href="{{route('classhome.create')}}">Đăng ký sinh viên</a></p>
     </div>
+    
 
     <div class="col-sm-8 text-left"> 
       <h1>Welcome</h1>
-      @yield('noidung')
+      @yield('classmaster')
     </div>
     
    
